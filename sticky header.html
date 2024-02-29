@@ -1,0 +1,47 @@
+<style>
+
+    .site-header {
+        padding: 20px 0;
+        position: fixed;
+        transition: 0.8s;
+        width: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+    }
+    
+    .header-wrap {
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        justify-content: space-between;
+        -ms-align-items: center;
+        align-items: center;
+        padding: 0;
+    }
+    
+    .headerup {
+        backdrop-filter: blur(5px);
+        background-color: #ffcb83b4;
+        padding: 10px 0;
+    }
+    
+    .headerup .navbar ul li a {
+        color: #786948;
+        font-weight: 700;
+    }
+</style>
+
+<script>
+    $(window).scroll(function() {
+        var height = $(window).scrollTop();
+        if (height > 100) {
+            $(".site-header").addClass("headerup");
+        } else {
+            $(".site-header").removeClass("headerup");
+        }
+    });
+</script>

@@ -1,0 +1,31 @@
+<div class="price__value text1">
+	<h3>
+		{{ row.gbp_price }}
+	</h3>
+
+	<p>
+		{{ row.time_content }}
+	</p>
+</div>
+<div class="price__value text2">
+	<h3>
+		{{ row.usa_price }}
+	</h3>
+
+	<p>
+		{{ row.time_content }}
+	</p>
+</div>
+
+$(document).ready(function(){
+	$('#checbox').on('click',function(){
+		if($(this).is(':checked'))  
+		{$('.text1').addClass('none'), $('.text2').addClass('block') }
+		else{$('.text1').removeClass('none'), $('.text2').removeClass('block')}
+	});
+})
+
+// css
+.none {display:none;}
+.block {display:block !important;}
+.text2 {display:none;}

@@ -1,0 +1,138 @@
+
+<section class="service-filter" id="service_filter_sec">
+    <div class="normal-wrapper">
+        <div class="filter__block">
+            <div class="wrap-drop_new" id="noble-gases1">
+                <span>{{ module.filter_text }}</span>
+                <ul class="drop_new controls">
+                    <li class="selected filter {{ module.filter_text|lower }}" data-filter="all"><a>{{ module.filter_text }}</a></li>
+                    {% for item in module.service_block_group %}
+                    {% for item2 in item.category_group %}
+                    <li class="filter" data-filter=".{{ item2.filter_text|replace(' ','-')|replace('&','-')|replace('$','-')|lower }}"><a>{{ item2.filter_text }}</a></li>
+                    {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="service__box">
+            <div class="service-wrap" id="serv-container">
+                {% for item in module.service_block_group %}
+                <div class="col-4 mix     
+                            {% for item2 in item.category_group %} {{ item2.filter_text|replace(' ','-')|replace('&','-')|replace('$','-')|lower }} {% endfor %}">
+                    <div class="service__block">
+                        
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/2.1.11/jquery.mixitup.js"></script>
+<script>
+
+    // Inspiration: https://tympanus.net/codrops/2012/10/04/custom-drop-down-list-styling/
+
+    function DropDown(el) {
+        this.dd = el;
+        this.placeholder = this.dd.children('span');
+        this.opts = this.dd.find('ul.drop_new li');
+        this.val = '';
+        this.index = -1;
+        this.initEvents();
+    }
+
+    DropDown.prototype = {
+        initEvents: function () {
+            var obj = this;
+            obj.dd.on('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $(this).toggleClass('active');
+            });
+            obj.opts.on('click', function () {
+                var opt = $(this);
+                obj.val = opt.text();
+                obj.index = opt.index();
+                obj.placeholder.text(obj.val);
+                opt.siblings().removeClass('selected');
+                opt.filter(':contains("' + obj.val + '")').addClass('selected');
+            }).change();
+        },
+        getValue: function () {
+            return this.val;
+        },
+        getIndex: function () {
+            return this.index;
+        }
+    };
+
+    $(function () {
+        // create new variable for each menu
+        var dd1 = new DropDown($('#noble-gases1'));
+        // var dd2 = new DropDown($('#other-gases'));
+        $(document).click(function () {
+            // close menu on document click
+            $('.wrap-drop_new').removeClass('active');
+
+
+
+        });
+    });
+
+    var seen = {};
+    $('.wrap-drop_new li').each(function() {
+        var txt = $(this).text();
+        if (seen[txt])
+            $(this).remove();
+        else
+            seen[txt] = true;
+    });
+
+    $(function(){
+        $('#serv-container').mixItUp();
+    });
+
+    // scroll id //
+    $(window).load(function() {
+        var urlHash = window.location.href.split("#")[1];
+        if (urlHash && jQuery('#' + urlHash).length ){
+            setTimeout(function() {
+                jQuery('html,body').animate({
+                    scrollTop: jQuery('#' + urlHash).offset().top 
+                }, 700);
+            }, 500);
+        }
+    });
+    
+    $('.mix').css('display','inline-block');
+
+</script>
+
+
+.service-filter .wrap-drop_new {cursor: pointer;margin: 0 auto;max-width: 390px;z-index: 3;background: #D76F46;padding: 10px 20px 0;color: #ffffff;}
+.service-filter .wrap-drop_new .drop_new {background:#D76F46;box-shadow:3px 3px 3px rgba(0,0,0,.2);display:none;left:0;list-style:none;margin-top:0;opacity:0;padding-left:0;position:absolute;right:0;top:100%;z-index:2;max-height:300px;overflow-y:auto;padding: 15px 20px 10px;}
+.service-filter .wrap-drop_new .drop_new li a {color:#ffffff;display:block;font-size: 20px;font-weight: 400;line-height: 32px;letter-spacing: 0.8px;text-transform: capitalize;text-decoration:none;}
+.service-filter .wrap-drop_new span {color:#ffffff;}
+.service-filter .wrap-drop_new.active::after {border-width:0 10px 10px;}
+.service-filter .wrap-drop_new.active .drop {display:block;opacity:1;pointer-events:auto;}
+
+.service-filter .mix { display: none;}
+.service-filter .wrap-drop_new span {display:block;padding-bottom:15px;padding-top: 5px;}
+.service-filter .wrap-drop_new span {border-bottom:1px solid transparent;}
+.service-filter .wrap-drop_new.active span {border-bottom:1px solid #ffffff;}
+.service-filter .wrap-drop_new ul li {margin:0;margin-bottom: 15px;line-height: normal;}
+.service-filter .wrap-drop_new ul li:last-child {margin-bottom:0px;}
+.service-filter .wrap-drop_new {position: relative;}
+.service-filter .wrap-drop_new:after {position: absolute;content: "";background-image: url('https://4201731.fs1.hubspotusercontent-na1.net/hubfs/4201731/60_Logos/arrow.svg');margin-top: -4px;right: 1rem;top: 50%;width: 19px;height: 10px;background-repeat: no-repeat;}
+.service-filter .wrap-drop_new.active:after {transform: rotate(180deg);}
+.service-filter .wrap-drop_new.active .drop_new {display: block;opacity: 1;}
+.service-filter .wrap-drop_new ul li.active { display:none;}
+
+
+
+

@@ -1,0 +1,349 @@
+{# {% set dynamic_page_hubdb_table_id = xxx %} #}
+<section class="section section--price">
+	<div class="container">
+
+		<!-- heading -->
+		<div class="section__heading">
+			<div class="heading__content">
+				<h2>
+					{{ module.heading_title }}
+				</h2>
+				{{ module.heading_content_details }}
+			</div>
+			<div class="country__block">
+				<div class="text">
+					{{ module.country_text }} 
+				</div>	
+				<div class="country-select">
+					<select name="boxes" id="boxselect">
+						{% for row in hubdb_table_rows( module.hubdb_country_select_table ) %}
+						<option  value="{{ row.country_select|lower }}">{{ row.country_select }}</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<!-- checkbox -->
+		<div class="toggle-btn">
+			<span style="margin: 0.8em;" class="gbp active">GBP</span>
+			<label class="switch">
+				<input class="checks" name="lang" value="html" type="checkbox" id="checbox" onclick="check()" ; />
+				<span class="slider round"></span>
+			</label>
+			<span style="margin: 0.8em;" class="usa">USA</span>
+		</div>
+		<div style="display:none;">
+			<button id="uncheck-btn" type="button">GBP</button>
+			<button id="check-btn">USA</button>
+		</div>
+
+		<!-- price-block-content -->
+		<div class="hubdb__box">
+			<div class="wrap">
+				{% for row in hubdb_table_rows( module.hubdb_table ) %}
+				<div class="col-3">
+					<div class="price__block">
+						{% if module.popular_show %}
+						<!-- HTML to show when checked -->
+						<div class="popular">
+							<p>
+								{{ module.popular_field }}
+							</p>
+						</div>
+						{% endif %}
+						<div class="top-content">
+							<div class="price__heading">
+								<h5>
+									{{ row.heading }}
+								</h5>
+								<p>
+									{{ row.heading_content }}
+								</p>
+							</div>
+							<div class="price__value text1 uk germany ireland">
+								<h3>
+									{{ row.gbp_price }}
+								</h3>
+
+								<p>
+									{{ row.time_content }}
+								</p>
+							</div>
+							<div class="price__value text2 australia mexico canada">
+								<h3>
+									{{ row.usa_price }}
+								</h3>
+
+								<p>
+									{{ row.time_content }}
+								</p>
+							</div>
+						</div>
+						<div class="list-content">
+							{{ row.list_content }}
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="pricing-cta text-center">
+			<p><span class="text-wrap">See all features </span> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="13" viewBox="0 0 20 13" fill="none">
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M19.6337 1.23712C19.8683 1.47171 20 1.78985 20 2.12156C20 2.45327 19.8683 2.77141 19.6337 3.006L10.8769 11.7628C10.6423 11.9974 10.3242 12.1291 9.99245 12.1291C9.66073 12.1291 9.3426 11.9974 9.10801 11.7628L0.351162 3.006C0.123287 2.77006 -0.00280387 2.45406 4.57215e-05 2.12606C0.00289531 1.79806 0.13446 1.4843 0.366402 1.25236C0.598343 1.02042 0.912106 0.888852 1.24011 0.886001C1.56811 0.883151 1.88411 1.00924 2.12004 1.23712L9.99245 9.10952L17.8648 1.23712C18.0994 1.0026 18.4176 0.87085 18.7493 0.87085C19.081 0.87085 19.3991 1.0026 19.6337 1.23712Z" fill="black"></path>
+				</svg>
+			</p>
+		</div>
+
+
+		<div class="btn-block">
+			{% for row in hubdb_table_rows( module.hubdb_table ) %}
+			<div class="btn--price{{ loop.index }}">
+				{{ row.button }} 
+			</div>
+			{% endfor %}
+		</div>
+
+		<!-- country-content -->
+		<div class="primary">
+			{% for row in hubdb_table_rows( module.hubdb_country_select_table ) %}
+			<div class="primary-box box {{ row.country_select|lower }}">
+				<div class="primary__heading">
+					<h3>
+						{{ module.pack_heading_title }}
+					</h3>
+				</div>
+				<div class="primary-block">
+					<div class="wrap no-guttor">
+						<div class="col-3">
+							<div class="primary-content">
+								<h4>
+									{{ row.country_select }}
+								</h4>
+							</div>
+						</div>
+						<div class="col-9">
+							<div class="primary__list">
+								{{ row.primary_list }}
+							</div>
+						</div>
+					</div>
+				</div>
+				{% for foreign_row in row.add_on_pack %}
+				<div class="onpack__box">
+					<div class="onpack__heading">
+						<h2>
+							{{ module.on_pack_heading }}
+						</h2>
+					</div>
+					<div class="wrap">
+						{% for row in hubdb_table_rows( module.hubdb_on_pack_table ) %}
+						<div class="col-6">
+							<div class="onpack__block">
+								<div class="top-content">
+									<div class="heading">
+										<div class="onpack__heading">
+											<h3>
+												{{ row.heading }}
+											</h3>
+										</div>
+										<div class="heading-content">
+											{{ row.heading_content }}
+										</div>
+									</div>
+									<div class="price">
+										<div class="price__content">
+											<h3>
+												{{ row.gbp_price }}
+											</h3>
+										</div>
+										<div class="time__content">
+											<p>
+												{{ row.time_content }}
+											</p>
+										</div>
+									</div>
+									<div class="price" style="display:none;">
+										<div class="price__content">
+											{{ row.usa_price }}
+										</div>
+										<div class="time__content">
+											{{ row.time_content }}
+										</div>
+									</div>
+								</div>
+								<div class="bottom-content">
+									<div class="list__content">
+										{{ row.list_content }}
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+			{% endfor %}
+		</div>
+
+
+
+	</div>
+</section>
+
+
+{% require_css %}
+<style>
+	{% scope_css %}
+
+	p {line-height:1.5;}
+	.section--price .section__heading { display:flex;justify-content:space-between;margin-bottom:64px;}
+	.section__heading .country__block {align-items: center;background: #172434;border-radius: 10px;display: flex;flex-wrap: wrap;min-width: 342px;padding: 15px 15px 15px 20px;}
+	.country__block .text {color: #ffffff;font-size: 20px;font-weight: 700;line-height: 30px;padding-right: 20px;}
+	.country-select select#boxselect { cursor: pointer;font-size: 18px;height: 48px;padding: 0px 38px;width: 100%;border-radius: 10px;outline: none;}
+	.toggle-btn {display: flex;justify-content: end;align-items:center;margin-bottom:35px;}
+	.section--price .hubdb__box {position:relative;}
+	.section--price .hubdb__box .wrap {margin-left: -8px;margin-right: -8px;}
+	.section--price [class*='col-'] {min-height: 1px;padding-left: 8px;padding-right: 8px;}
+	.section--price .price__block {background: #fff;border: 1px solid #e6e8ec;border-radius: 16px;box-shadow: 0 8px 16px -8px hsla(0,0%,6%,.2);height: 100%;position: relative;}
+	.section--price .price__block .popular p {background: #e43332;border-radius: 0 10px 0 10px;color: #fcfcfd;font-size: 12px;font-weight: 700;line-height: 12px;padding: 8px 9px;position: absolute;right: 0;text-transform: uppercase;top: 0;}
+	.section--price .price__block .top-content {padding: 38px 32px 32px;display: flex;flex-direction: column;flex-wrap: wrap;min-height: 280px;} 
+	.section--price .price__block .price__heading h5  {margin-bottom:10px;}
+	.section--price .price__block .price__value {margin-top:auto;}
+	.section--price .price__block .price__value h3, .onpack__box .top-content h3 {display:flex;margin-bottom:5px;}
+	.section--price .price__block .price__value h3 div span, .onpack__box .top-content .price h3 div span {color: #e43332;}
+	.section--price .price__block .price__value h3 div:last-child span, .onpack__box .top-content .price h3 div:last-child span {color: #000000;margin-left:5px;}
+	.section--price .price__block .price__value h3 div:first-child, .onpack__box .top-content .price h3 div:first-child {position:relative;top:-10px;}
+	.hubdb__box .wrap .col-3:last-child .price__value p a {background: #e43332;border-radius: 50px;color: #fff;display: inline-block;font-weight: 700;line-height: normal;padding: 10px 25px;text-decoration: none;transition: all .5s ease-in-out;}
+	.section--price .price__block .list-content ul {list-style: none;padding: 0;margin: 0;}
+	.section--price .price__block .list-content ul li {align-items: center;border-top: 1px solid #e6e8ec;color: #172434;display: flex;flex-wrap: wrap;font-size: 14px;font-style: normal;font-weight: 400;line-height: 24px;list-style: none;min-height: 72px;padding: 12px 30px 12px 57px;position: relative;}
+	.section--price .price__block .list-content ul li:after, .primary__list ul li:after, .onpack__box .list__content ul li:after {content: "";height: 24px;left: 24px;position: absolute;top: auto;width: 24px;background-image: url(https://3895366.fs1.hubspotusercontent-na1.net/hubfs/3895366/Hitesh%20/Line.svg);}
+	.btn-block {display: flex;justify-content: center;margin-top:64px;}
+	.btn-block .btn--price1 a, .btn-block .btn--price2 a { margin: 0 10px;border-radius: 50px;color: #ffffff;display: inline-block;font-size: 18px;font-weight: 900;letter-spacing: 3.6px;line-height: normal;padding: 21px 33px;text-decoration: none;text-transform: uppercase;transition: all .5s ease-in-out;}
+	.btn-block .btn--price1 a, .btn-block .btn--price2 a:hover, .hubdb__box .wrap .col-3:last-child .price__value p a:hover {background:#172434;}
+	.btn-block .btn--price2 a, .btn-block .btn--price1 a:hover {background:#e43332;}
+
+	/* 	price-block-height */
+	.hubdb__box {height: 562px;overflow: hidden;position: relative;}
+	.height {height:100%;}
+	.hubdb__box:after {background: linear-gradient(359deg,#fff 27.92%,hsla(0,0%,100%,0) 88.61%);bottom: 0;content: "";height: 100px;position: absolute;width: 100%;}
+	.hubdb__box.height:after {display:none;}
+	.pricing-cta svg {transform: rotate(0deg);}
+	.pricing-cta.rotate svg {transform: rotate(180deg);}
+	.pricing-cta {margin: 0 auto;width: 190px;margin-top:48px;}
+	.pricing-cta p {cursor: pointer;font-family: proxima_nova_alt,sans-serif;font-weight: 700;text-transform: uppercase;}
+
+	/* 	primary-box */
+	.primary-box { margin-top:100px;display:none;}
+	.primary-box .primary__heading { margin-bottom:64px; }
+	.primary-block .no-guttor {margin-right: 0;margin-left: 0;}
+	.primary-block .no-guttor>[class*='col-'] {padding-right: 0;padding-left: 0;}
+	.primary-block {border: 1px solid #e6e8ec;border-radius: 16px;box-shadow: 0 8px 16px -8px hsla(0,0%,6%,.2);}
+	.primary .primary-box:first-child {display:block;}
+	.primary-content { background:#172434;display: flex;flex-wrap: wrap;justify-content:center;align-items: center;height:100%;background: #172434;height: 100%;border-top-left-radius: 16px;border-bottom-left-radius: 16px;}
+	.primary-content h4 {color:#ffffff;margin:0;}
+	.primary__list {height:100%;}
+	.primary__list ul {display: flex;flex-wrap: wrap;justify-content:space-between;padding: 0;margin: 0;}
+	.primary__list ul li {align-items: center;border-bottom: 1px solid #e6e8ec;border-right: 1px solid #e6e8ec;color: #172434;font-size: 14px;font-style: normal;font-weight: 400;line-height: 24px;list-style: none;padding: 20px 30px 20px 62px;position: relative;width: 50%;}
+	.primary__list ul li:nth-child(2n) {border-right: 0}
+	.primary__list ul li:last-child {border-bottom: 0}
+
+	/* 	price chackbox  */
+	.onpack__box {margin-top:64px;}
+	.top-content { display:flex;justify-content:space-between;}
+	input, label {display: inline-block;vertical-align: middle;margin: 10px 0;}
+	.switch {position: relative;display: inline-block;width: 60px;height: 34px;}
+	.switch input {opacity: 0;width: 0;height: 0;}
+	.slider {position: absolute;cursor: pointer;top: 0;left: 0;right: 0;bottom: 0;background-color: #e43332;-webkit-transition: 0.4s;box-shadow: 0px 1px 7px #1e2321;transform: translate(0px, 0px);transition: 0.6s ease transform, 0.6s box-shadow;}
+	.slider:before {position: absolute;content: "£";height: 26px;width: 26px;left: 4px;bottom: 4px;background-color: white;-webkit-transition: 0.4s;transition: 0.4s;align-items: center;display: flex;justify-content: center;}
+	input:checked + .slider:before {-webkit-transform: translateX(26px);-ms-transform: translateX(26px);transform: translateX(26px);content: "$";}
+	.gbp, .usa {opacity:0.5;}
+	.gbp.active, .usa.active {opacity: 1;}
+	.slider.round {border-radius: 34px;}
+	.slider.round:before {border-radius: 50%;}
+	.none {display:none !important;}
+	.block {display:block !important;}
+	.text2 {display:none;}
+
+	/*     onpack__box */
+	.onpack__box .onpack__block {background: #fff;border: 1px solid #e6e8ec;border-radius: 16px;box-shadow: 0 8px 16px -8px hsla(0,0%,6%,.2);height: 100%;overflow: hidden;}
+	.onpack__box .top-content {align-items: center;background: #172434;border-bottom: 1px solid #e6e8ec;display: flex;flex-wrap: wrap;justify-content: space-between;padding: 19px 50px;color: #ffffff;}
+	.onpack__box .top-content .price h3 {display:flex;}
+	.onpack__box .top-content p, .onpack__box .top-content h3 {color:#ffffff !important;;}
+	.onpack__box .list__content {padding: 22px 50px 25px;}
+	.onpack__box ul {list-style-type: none;margin: 0;padding: 0;}
+	.onpack__box ul li {align-items: center;font-size: 14px;font-weight: 400;line-height: 24px;margin-bottom: 20px;padding-left: 45px;position: relative;}
+	.onpack__box .list__content ul li:after {left:0;}
+	.onpack__box .col-6 {margin-bottom: 30px;}
+
+
+
+	{% end_scope_css %} 
+</style>
+{% end_require_css %}
+
+
+$(document).ready(function(event){
+	$('#boxselect').change(function(){
+		// 			$(".price__value").hide();
+		$(".price__value"+$(this).val()).show();
+		if($(this).val() == "australia"){
+			$("#check-btn").trigger("click");
+		}
+		else if($(this).val() == "mexico"){
+			$("#check-btn").trigger("click");
+		}
+		else if($(this).val() == "canada"){
+			$("#check-btn").trigger("click");
+		}
+		else {
+			$("#uncheck-btn").trigger("click");
+		}
+	});
+});    
+
+
+$(document).ready(function(event){
+	$('#boxselect').change(function(){
+		$this = $(this);
+		$('.box').hide();
+		$('.'+$this.val()).show();
+		console.log("showing "+$this.val()+" boxes");
+	});
+}); 
+
+
+$(document).ready(function(){
+	$('#checbox').on('click',function(){
+		if($(this).is(':checked'))  
+		{$('.text1').addClass('none'), $('.text2').addClass('block'), $('.usa').addClass('active'), $('.gbp').removeClass('active') }
+		else{$('.text1').removeClass('none'), $('.text2').removeClass('block'), $('.usa').removeClass('active'), $('.gbp').addClass('active')}
+	});
+})
+
+const checkBtn = document.getElementById("check-btn");
+const uncheckBtn = document.getElementById("uncheck-btn");
+const el = document.getElementsByClassName("checks");
+
+const checkAll = () => {
+	for (let i = 0; i < el.length; i++) {
+		el[i].checked = true;
+		$('.text1').addClass('none'), $('.text2').addClass('block')
+	}
+};
+const uncheckAll = () => {
+	for (let i = 0; i < el.length; i++) {
+		el[i].checked = false;
+		$('.text1').removeClass('none'), $('.text2').removeClass('block')
+	}
+};
+
+checkBtn.addEventListener("click", checkAll, false);
+uncheckBtn.addEventListener("click", uncheckAll, false);
+
+
+$(".pricing-cta p").click(function(){
+	$(".hubdb__box").toggleClass("height"), $(".pricing-cta").toggleClass("rotate") ;
+});
+

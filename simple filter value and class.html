@@ -1,0 +1,11 @@
+$(document).ready(function(event){
+		$('#boxselect').change(function(){
+			$this = $(this);
+			$('.box').hide();
+			$('.'+$this.val()).show();
+			console.log("showing "+$this.val()+" boxes");
+		});
+	});   
+
+	<div value="1"></div>
+	<div class="box 1"></div>

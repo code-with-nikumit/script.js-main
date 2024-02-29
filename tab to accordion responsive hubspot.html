@@ -1,0 +1,106 @@
+
+<div class="tab-section">
+<div class="tab">
+  <div class="tab-list">
+	<ul>
+	  <li></li>
+	</ul>
+  </div>
+  <div class="tab-content-list">
+	<div class="tab-content">
+	  <div class="title__block d-flex">
+		 <div class="title"></div>
+		 <div class="arrow"></div>
+	  </div>
+	  <div class="inner">
+
+	  </div>
+	</div>
+  </div>
+</div>
+</div>
+
+
+/* 	tab */
+	.section--invoice .tab .tab-list {margin-bottom:30px;}
+	.section--invoice .tab .tab-list ul {display: flex;justify-content: start;padding-left: 0;list-style: none;margin-bottom: 0;border-bottom: 2px solid #377DFF;} 
+	.section--invoice .tab .tab-list ul li {padding:15px;border-top-right-radius: 5px;border-top-left-radius: 5px;width: 165px;justify-content: center;display: flex;padding: 23px 10px;font-size: 18px;font-weight: 600;}
+	.section--invoice .tab .tab-list ul li+li {margin-left:24px;}
+	.section--invoice .tab-list ul li.active {background:#377DFF;color:#ffffff;}
+	.section--invoice .vidInner {margin: 0 0px;}
+	.section--invoice .tab-content-list .heading-title {padding-right:20px;}
+	.section--invoice .tab-content-list .heading-title h3 {font-size: 32px;line-height: 42px;letter-spacing: 0em;text-transform: uppercase;}
+	.section--invoice .tab-content-list .inner .content p span {color:#377DFF;}
+
+	@media(max-width:767px){
+		.section--invoice .tab .tab-content-list .tab-content .inner {display:none;}
+		.section--invoice .tab .tab-content-list .tab-content.active .inner {display:block !important;}
+		.section--invoice .title__block {justify-content: space-between; align-items: center;border-bottom: 2px solid #377DFF;border-top-right-radius: 5px;border-top-left-radius: 5px;padding: 18px 24px;}
+		.section--invoice .title__block .arrow {width:15px;height: 15px;}
+		.section--invoice .tab-content .title__block .arrow svg {transition: 0.4s;}
+		.section--invoice .tab-content .title__block .arrow svg path {fill:#333;}
+		.section--invoice .tab-content.active .title__block .arrow svg {transform: rotate(180deg);transition: 0.4s;}
+		.section--invoice .tab-content.active .title__block .arrow svg path { fill:#ffffff;}
+		.section--invoice .tab-content.active .title__block {background:#377DFF;margin-top:5px;color:#ffffff;}
+		.section--invoice .tab-content .title {font-size: 18px;font-weight: 600;}
+		.section--invoice .vidInner {border-radius: 0;}
+		.section--invoice .tab-list {display:none;}
+
+	}
+
+
+
+	
+{% require_js %}
+<script>
+
+	var Loadflag = false;
+	var flag = false;
+
+	if (window.matchMedia("(max-width:767px)").matches) {
+		flag = true;
+	}
+
+
+
+	$('.section--invoice .tab-list ul li').on('click',function(e){
+		e.preventDefault();
+		var index = $(this).index(),
+			tab = $(this).parents('.tab'),
+			tabList = tab.find('.tab-content-list');
+
+		tabList.find('.tab-content').eq(index).fadeIn();
+		tabList.find('.tab-content').not(':eq('+index+')').hide();
+
+		$(this).addClass('active').siblings().removeClass('active');
+	});
+
+	$('.section--invoice .title__block').on('click',function(){
+		var tab = $(this).parent('.tab-content');
+		$('.inner').slideUp(300);
+		$('.tab-content').removeClass("active");
+		tab.siblings().find('.inner').slideUp(300);
+		tab.addClass('active').siblings().removeClass('active');
+		if(flag && Loadflag){
+			setTimeout(function() {
+				$("html, body").animate({
+					scrollTop: tab.offset().top
+				}, 500)
+			}, 500)
+		}
+	});
+
+	if(flag){
+		$(".section--invoice .tab-list").hide();
+		$('.section--invoice .title').eq(0).trigger('click');
+	}else{
+		$('.section--invoice .title').hide();
+		$(".section--invoice .tab-list ul li:nth-child(1)").trigger('click');
+	}
+	$(window).on('load',function(){
+		Loadflag = true;
+	});
+
+
+</script>
+{% end_require_js %}

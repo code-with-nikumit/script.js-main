@@ -1,0 +1,99 @@
+<div class="menu-toggle">
+    <span class="bar1"></span>
+    <span class="bar2"></span>
+    <span class="bar3"></span>
+</div>
+
+<style>
+    /* ------- menu-toggle ------- */
+    
+    .menu-toggle {
+        display: flex;
+        flex-wrap: wrap;
+        width: 40px;
+        height: 26px !important;
+        z-index: 9;
+        position: relative;
+        top: -2px;
+        margin-left: auto;
+        display: none;
+    }
+    
+    .menu-toggle span {
+        width: 30px;
+        height: 4px;
+        background: #ffffff;
+        margin: 0px auto;
+        transition: all 0.3s;
+        backface-visibility: hidden;
+    }
+    
+    .menu-toggle:focus {
+        outline: none;
+    }
+    
+    .menu-toggle.on .bar1 {
+        transform: rotate(45deg) translate(0px, 5px);
+    }
+    
+    .menu-toggle.on .bar2 {
+        opacity: 0;
+    }
+    
+    .menu-toggle.on .bar3 {
+        transform: rotate(-45deg) translate(7px, -12px);
+    }
+    
+    .scroll-off {
+        overflow: hidden;
+    }
+    
+    @media only screen and (max-width: 479px) {
+        .navbar {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            right: 0;
+            z-index: 9;
+            display: none;
+        }
+        .navbar ul {
+            display: block;
+            width: 100%;
+            margin-left: auto;
+            padding: 20px 15px 30px;
+            background: rgba(56, 40, 40, 0.5);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 10px #ede9fe;
+        }
+        .navbar li {
+            margin-top: 15px;
+        }
+        .navbar ul li a {
+            color: #ffffff;
+        }
+        .navbar li+li {
+            margin-left: 0;
+        }
+        .menu-toggle {
+            display: block;
+            height: 24px;
+            display: flex;
+            margin-left: auto;
+        }
+        .bar1,
+        .bar2,
+        .bar3 {
+            display: block;
+            margin: 5px;
+        }
+    }
+</style>
+
+<script>
+    $(".menu-toggle").click(function() {
+        $(this).toggleClass("on");
+        $(".navbar").slideToggle();
+        $('body').toggleClass('scroll-off');
+    });
+</script>

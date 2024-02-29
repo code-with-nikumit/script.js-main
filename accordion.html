@@ -1,0 +1,82 @@
+<!-- section--accordion-start -->
+
+<section class="section section--accordion">
+    <div class="wrap">
+        <div class="accordion">
+            <h3 class="mb-0">section-1</h3>
+            <div class="accordion__block">
+                Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum
+                a velit eu ante scelerisque vulputate.
+            </div>
+        </div>
+        <div class="accordion">
+            <h3 class="mb-0">section-2</h3>
+            <div class="accordion__block">
+                Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum
+                a velit eu ante scelerisque vulputate.
+            </div>
+        </div>
+        <div class="accordion">
+            <h3 class="mb-0">section-3</h3>
+            <div class="accordion__block">
+                Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum
+                a velit eu ante scelerisque vulputate.
+            </div>
+        </div>
+        <div class="accordion">
+            <h3 class="mb-0">section-4</h3>
+            <div class="accordion__block">
+                Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum
+                a velit eu ante scelerisque vulputate.
+            </div>
+        </div>
+    </div>
+</section>
+<!-- section--accordion-end -->
+
+<style>
+    /* .section--accordion */
+    
+    .section--accordion .accordion h3 {
+        font-size: 20px;
+        background-color: #f1f1f1;
+        padding: 20px;
+        text-align: left;
+        width: 100%;
+        display: block;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .section--accordion .accordion h3:hover {
+        background-color: #6a6a6a;
+    }
+    
+    .section--accordion .accordion h3.bor {
+        border-bottom: 2px solid #e83e8c;
+    }
+    
+    .accordion__block {
+        padding: 40px 100px;
+        display: none;
+    }
+    
+    .active {
+        background-color: #e69f16;
+    }
+    
+    .tab-content {
+        display: none;
+        padding: 30px 50px;
+    }
+</style>
+
+<script>
+    // section--accoridon
+
+    $('.accordion h3').click(function() {
+        $('.accordion h3').removeClass('bor');
+        $(this).addClass('bor');
+        $('.accordion__block').slideUp();
+        $(this).next().slideDown();
+    });
+</script>

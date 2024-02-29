@@ -1,0 +1,37 @@
+{% if module.select_cta_type == 'cta_button' %}
+{% cta guid="{{ module.cta_field }}" %}
+{% elif module.select_cta_type == 'normal_button' %}
+{% set href = module.button_link.url.href %}
+{% if module.button_link.url.type is equalto "EMAIL_ADDRESS" %}
+{% set href = "mailto:" + href %}
+{% endif %}
+<a href="{{ href }}"
+   {% if module.button_link.open_in_new_tab %}target="_blank"{% endif %}
+   {% if module.button_link.rel %}rel="{{ module.button_link.rel }}"{% endif %}
+   >
+	{{ module.button_text }}
+</a>
+{% endif %}
+
+{% if module.select_background == 'cta_image' %}
+<div class="background">
+	<div class="background_image">
+		{% if module.cta_images.src %}
+		{% set sizeAttrs = 'width="{{ module.cta_images.width }}" height="{{ module.cta_images.height }}"' %}
+		{% if module.cta_images.size_type == 'auto' %}
+		{% set sizeAttrs = 'width="{{ module.cta_images.width }}" height="{{ module.cta_images.height }}" style="max-width: 100%; height: auto;"' %}
+		{% elif module.cta_images.size_type == 'auto_custom_max' %}
+		{% set sizeAttrs = 'width="{{ module.cta_images.max_width }}" height="{{ module.cta_images.max_height }}" style="max-width: 100%; height: auto;"' %}
+		{% endif %}
+		{% set loadingAttr = module.cta_images.loading != 'disabled' ? 'loading="{{ module.cta_images.loading }}"' : '' %}
+		<img src="{{ module.cta_images.src }}" alt="{{ module.cta_images.alt }}" {{ loadingAttr }} {{ sizeAttrs }}>
+		{% endif %}
+	<div class="background_ovarlay" style="background:{{ module.background_overlay.color }}{{ module.background_overlay.opacity }};">
+	</div>
+	</div>
+</div>
+
+{% elif module.select_background == 'color_background' %}
+<div class="background_color" style="background:{{ module.color_field.color }};height:500px;">
+</div>
+{% endif %}

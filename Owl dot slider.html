@@ -1,0 +1,77 @@
+<section class="section section--testimonial">
+    <div class="wrap">
+        <div id="owl" class="owl-carousel owl-theme">
+            <div class="item">
+                <div class="testimonial__content text-center text-white">
+                    <img class="mb-24" src="images/testimonial-pro-img.png" alt="">
+                    <blockquote>
+                        “I am so happy because I found this recipe, and it just made my life easier. Thanks so much for sharing!”
+                    </blockquote>
+                    <span>- Michael Dawson, San Francisco, CA -</span>
+                </div>
+            </div>
+            <div class="item">
+                <div class="testimonial__content text-center text-white">
+                    <img class="mb-24" src="images/testimonial-pro-img.png" alt="">
+                    <blockquote>
+                        “I am so happy because I found this recipe, and it just made my life easier. Thanks so much for sharing!”
+                    </blockquote>
+                    <span>- Michael Dawson, San Francisco, CA -</span>
+                </div>
+            </div>
+            <div class="item">
+                <div class="testimonial__content text-center text-white">
+                    <img class="mb-24" src="images/testimonial-pro-img.png" alt="">
+                    <blockquote>
+                        “I am so happy because I found this recipe, and it just made my life easier. Thanks so much for sharing!”
+                    </blockquote>
+                    <span>- Michael Dawson, San Francisco, CA -</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .testimonial__content img {
+        display: inline-block !important;
+    }
+    
+    .section--testimonial .owl-dots {
+        justify-content: center;
+        display: flex;
+    }
+    
+    .section--testimonial .owl-dots span {
+        display: block;
+        background-color: #796d78;
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        margin: 5px;
+    }
+    
+    .section--testimonial .owl-dot.active span {
+        background-color: #ffffff;
+    }
+</style>
+
+<script>
+    // owl slider  
+    $('#owl').owlCarousel({
+        loop: true,
+        margin: 10,
+        dots: true,
+        autoplay: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        responsive: {
+            0: {
+                items: 1
+            },
+            1000: {
+                items: 1
+            }
+        }
+    });
+</script>

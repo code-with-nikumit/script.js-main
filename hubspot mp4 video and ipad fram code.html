@@ -1,0 +1,59 @@
+<div class="hero__video">
+					<div class="video__play-block">
+						{% if module.content_module.hero_video_frame.src %}
+						{% set sizeAttrs = 'width="{{ module.content_module.hero_video_frame.width }}" height="{{ module.content_module.hero_video_frame.height }}"' %}
+						{% if module.content_module.hero_video_frame.size_type == 'auto' %}
+						{% set sizeAttrs = 'width="{{ module.content_module.hero_video_frame.width }}" height="{{ module.content_module.hero_video_frame.height }}" style="max-width: 100%; height: auto;"' %}
+						{% elif module.content_module.hero_video_frame.size_type == 'auto_custom_max' %}
+						{% set sizeAttrs = 'width="{{ module.content_module.hero_video_frame.max_width }}" height="{{ module.content_module.hero_video_frame.max_height }}" style="max-width: 100%; height: auto;"' %}
+						{% endif %}
+						{% set loadingAttr = module.content_module.hero_video_frame.loading != 'disabled' ? 'loading="{{ module.content_module.hero_video_frame.loading }}"' : '' %}
+						<img src="{{ module.content_module.hero_video_frame.src }}" alt="{{ module.content_module.hero_video_frame.alt }}" {{ loadingAttr }} {{ sizeAttrs }}>
+						{% endif %}
+						<div class="play-img" onclick="playVid()">
+							{% if module.content_module.video_play_image.src %}
+							{% set sizeAttrs = 'width="{{ module.content_module.video_play_image.width }}" height="{{ module.content_module.video_play_image.height }}"' %}
+							{% if module.content_module.video_play_image.size_type == 'auto' %}
+							{% set sizeAttrs = 'width="{{ module.content_module.video_play_image.width }}" height="{{ module.content_module.video_play_image.height }}" style="max-width: 100%; height: auto;"' %}
+							{% elif module.content_module.video_play_image.size_type == 'auto_custom_max' %}
+							{% set sizeAttrs = 'width="{{ module.content_module.video_play_image.max_width }}" height="{{ module.content_module.video_play_image.max_height }}" style="max-width: 100%; height: auto;"' %}
+							{% endif %}
+							{% set loadingAttr = module.content_module.video_play_image.loading != 'disabled' ? 'loading="{{ module.content_module.video_play_image.loading }}"' : '' %}
+							<img src="{{ module.content_module.video_play_image.src }}" alt="{{ module.content_module.video_play_image.alt }}" {{ loadingAttr }} {{ sizeAttrs }}>
+							{% endif %}
+						</div>
+						<div class="video">
+							<div class="source-video">
+								<video id="play" poster="{{ module.content_module.video_thumbnail_image.src }}" controls>
+									<source src="{{ module.content_module.hero_video }}" type="video/mp4">
+								</video>
+							</div>
+						</div>
+					</div>
+				</div> 
+
+				.section--hero .hero__video {position: relative;margin-top:60px;margin-bottom: -410px;}
+				.section--hero .hero__video video { border-radius: 11px !important;width: 850px;height: 601px;object-fit: cover; z-index: 99;margin-top: 11px;}
+				/* 	.section--hero .hero__video .video {left: -50%;transform: translateX(50%);margin-left: 16px;} */
+				.section--hero .hero__video .video {position: absolute;}
+				.section--hero .hero__video .video__play-block {display: flex;justify-content: center;align-items: center;position: relative;width: 910px;height: 100%;margin: auto;}
+				.section--hero .hero__video .video__play-block img {width: 100%;}
+				.section--hero .hero__video .video__play-block .play-img { position: absolute;z-index: 2;cursor: pointer; }
+				.thumbnail-img {position: absolute; z-index: 1;}
+				
+{% require_js %}
+<script>
+
+	let vid = document.getElementById("play"); 
+	function playVid() { 
+		vid.play();
+	} 
+	
+	// 	$('video').css({ display: "none" })
+	$('.play-img').click(function() {
+		$(this).hide();
+		// $('video').css({ display: "block" })
+	});
+
+</script>
+{% end_require_js %}

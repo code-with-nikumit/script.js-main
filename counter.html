@@ -1,0 +1,73 @@
+<section class="section section--rank">
+    <div class="wrap">
+        <div class="rank__box text-center">
+            <div class="rank__counter mb-24 mb-sm-16">
+                <h2 class="mb-10 mb-sm-0 count">23567</h2>
+                <span>Recipes Available</span>
+            </div>
+            <div class="rank__counter mb-sm-16">
+                <h2 class="mb-10 mb-sm-0 count">431729</h2>
+                <span>Active Users</span>
+            </div>
+            <div class="rank__counter mb-sm-16">
+                <h2 class="mb-10 mb-sm-0 count">892173</h2>
+                <span>Positive Reviews</span>
+            </div>
+            <div class="rank__counter mb-sm-16">
+                <h2 class="mb-10 mb-sm-0 count">56581</h2>
+                <span>Photos & Videos</span>
+            </div>
+            <div class="rank__counter">
+                <h2 class="mb-10 mb-sm-0 count">3182</h2>
+                <span>Spices and Herbs</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+
+ // number & coma(,) counter
+    a = 0;
+    $(window).scroll(function() {
+        var oTop = $(".rank__counter").offset().top -
+            window.innerHeight;
+        if (a == 0 && $(window).scrollTop() > oTop) {
+            $('.count').each(function() {
+                $(this).prop('Counter', 0).animate({
+                    Counter: $(this).text()
+                }, {
+                    duration: 2700,
+                    easing: 'swing',
+                    step: function(now) {
+                        // $(this).text(Math.ceil(now));
+                        now = Number(Math.ceil(now)).toLocaleString('en');
+                        $(this).text(now);
+                    }
+                });
+            });
+            a = 1;
+        }
+    });
+    
+    // counter
+    a = 0;
+    $(window).scroll(function() {
+        var oTop = $(".rank__counter").offset().top -
+            window.innerHeight;
+        if (a == 0 && $(window).scrollTop() > oTop) {
+            $('.count').each(function() {
+                $(this).prop('Counter', 0).animate({
+                    Counter: $(this).text()
+                }, {
+                    duration: 2700,
+                    easing: 'swing',
+                    step: function(now) {
+                        $(this).text(Math.ceil(now));
+                    }
+                });
+            });
+            a = 1;
+        }
+    });
+</script>

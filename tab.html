@@ -1,0 +1,74 @@
+<!-- new--tab-start -->
+<section class="section section-tabs">
+    <div class="wrap">
+        <div class="tab__box">
+            <ul>
+                <li><a href="#" tabid="tab4" class="active">London</a></li>
+                <li><a href="#" tabid="tab5">Paris</a></li>
+                <li><a href="#" tabid="tab6">Tokyo</a></li>
+            </ul>
+            <div id="tab4" class="tab__block">
+                <p>London is the capital city of England.</p>
+                <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean
+                    tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt
+                    interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+            </div>
+            <div id="tab5" class="tab__block">
+                <p>Paris is the capital of France.</p>
+                <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut
+                    dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla.
+                    Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+            </div>
+            <div id="tab6" class="tab__block">
+                <p>Tokyo is the capital of Japan.</p>
+                <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra
+                    blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit
+                    eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- new--tab-end -->
+
+<style>
+    /* new-tab */
+    
+    .tab__box ul {
+        list-style: none;
+        display: flex;
+        list-style: none;
+        padding: 0px;
+        background-color: #222426;
+    }
+    
+    .tab__box li {
+        background-color: #505d68;
+        padding: 20px 30px;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+    }
+    
+    .tab__box li a {
+        padding: 20px 50px;
+    }
+    
+    .tab__block {
+        display: none;
+        padding: 20px 50px;
+    }
+    
+    #tab4 {
+        display: block;
+    }
+</style>
+
+<script>
+    // tab
+    $('.tab__box li a').click(function() {
+        $('.tab__box li a').removeClass('active');
+        $(this).addClass('active');
+        $('.tab__block').slideUp();
+        var ids = '#' + $(this).attr('tabid');
+        $(ids).slideDown();
+        return false;
+    });
+</script>

@@ -1,0 +1,261 @@
+/* menu toggle start */
+
+.nav__toggle {
+    width: 50px;
+    height: 30px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+.nav__toggle .first,
+.nav__toggle .last,
+.nav__toggle .middle {
+    height: 3px;
+    width: 30px;
+    background-color: #000;
+    display: block;
+    border-radius: 5px;
+}
+
+.nav__toggle .middle {
+    margin: 3px 0;
+}
+
+.nav__toggle.on .middle {
+    display: none;
+}
+
+.nav__toggle.on .first {
+    transform: rotate(28deg) translate(2px, 0px);
+    transition: all 0.3s;
+}
+
+.nav__toggle.on .last {
+    transform: rotate(-29deg) translate(2px, -1px);
+    transition: all 0.3s;
+}
+
+
+/* owl slider dots and arrow css start */
+
+.section--service .owl-carousel,
+.section--portfolio .owl-carousel {
+    position: relative;
+}
+
+.section--service .owl-dots,
+.section--portfolio .owl-dots {
+    justify-content: center;
+    display: flex;
+    margin-top: 30px;
+}
+
+.section--service .owl-dots span,
+.section--portfolio .owl-dots span {
+    display: block;
+    background-color: #ff385c;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    margin: 5px;
+}
+
+.section--service .owl-dot.active span,
+.section--portfolio .owl-dot.active span {
+    width: 17px;
+    height: 17px;
+}
+
+.owl-carousel .owl-nav button.owl-next,
+.owl-carousel .owl-nav button.owl-prev {
+    width: 40px;
+    height: 40px;
+    background-color: #1956ff !important;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    font-size: 40px !important;
+    line-height: 0 !important;
+}
+
+.owl-carousel .owl-nav button.owl-next {
+    right: 30px;
+}
+
+.owl-carousel .owl-nav button.owl-prev {
+    left: 30px;
+}
+
+
+/* responsive website media query */
+
+
+/* @media only screen and (max-width: 1169px) {
+    check 1024
+}
+
+@media only screen and (max-width: 1023px) {
+    check 768
+}
+
+@media only screen and (max-width: 767px) {
+    check 578
+}
+
+@media only screen and (max-width: 577px) {
+    check 480
+}
+
+@media only screen and (max-width: 479px) {
+    check 361
+}
+
+@media only screen and (max-width: 360px) {
+    check 320
+} */
+
+
+/*  section--tab & accordion-start */
+
+.r-tabs .r-tabs-nav {
+    margin: 0;
+    padding: 0;
+}
+
+.r-tabs .r-tabs-tab {
+    display: inline-block;
+    margin: 0;
+    list-style: none;
+}
+
+.r-tabs .r-tabs-panel {
+    padding: 15px;
+    display: none;
+}
+
+.r-tabs .r-tabs-accordion-title {
+    display: none;
+}
+
+.r-tabs .r-tabs-panel.r-tabs-state-active {
+    display: block;
+}
+
+
+/* Accordion responsive breakpoint */
+
+@media only screen and (max-width: 768px) {
+    .r-tabs .r-tabs-nav {
+        display: none;
+    }
+    .r-tabs .r-tabs-accordion-title {
+        display: block;
+    }
+}
+
+
+/* section--tab & accordion-end */
+
+
+/* .section--accordion */
+
+.section--accordion .accordion h3 {
+    font-size: 20px;
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: left;
+    width: 100%;
+    display: block;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.section--accordion .accordion h3:hover {
+    background-color: #6a6a6a;
+}
+
+.section--accordion .accordion h3.bor {
+    border-bottom: 2px solid #e83e8c;
+}
+
+.accordion__block {
+    padding: 40px 100px;
+    display: none;
+}
+
+
+/* new-tab */
+
+.tab__box ul {
+    list-style: none;
+    display: flex;
+    list-style: none;
+    padding: 0px;
+    background-color: #222426;
+}
+
+.tab__box li {
+    background-color: #505d68;
+    padding: 20px 30px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.tab__box li a {
+    padding: 20px 50px;
+}
+
+.tab__block {
+    display: none;
+    padding: 20px 50px;
+}
+
+#tab4 {
+    display: block;
+}
+
+.active {
+    background-color: #e69f16;
+}
+
+.tab-content {
+    display: none;
+    padding: 30px 50px;
+}
+
+
+/* pop up box */
+
+.section--popup {
+    padding: 350px 0;
+}
+
+.popup-box {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(139, 152, 21, 0.5);
+    display: none;
+}
+
+.popup-box .body {
+    overflow: hidden;
+}
+
+.popup-box .popup__content {
+    background-color: #007182;
+    color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    position: fixed;
+    left: 45%;
+    top: 45%;
+}
